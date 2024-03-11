@@ -10,8 +10,8 @@ public class SQLConnection {
     private Connection con;
 
     public SQLConnection() throws SQLException {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/csit314", "test",
-                            "password");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/login", "root",
+                            "kaiyang123");
             if (!tablesCreated) {
                     createTablesIfNotExists();
             }
