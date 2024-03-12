@@ -2,14 +2,21 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import UserPage from "../pages/UserPage";
 import ManagerPage from "../pages/ManagerPage";
+import ProtectedRoute from "./ProtectedRoute";
 
 function PageRoutes() {
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<Login />} />
-                <Route path="/UserPage" element={<UserPage />} />
-                <Route path="/ManagerPage" element={<ManagerPage />} />
+
+                <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
+                    <Route path="/UserPage" element={<UserPage />} />
+                </Route>
+                
+                <Route element={<ProtectedRoute allowedRoles={["manager"]} />}>
+                    <Route path="/ManagerPage" element={<ManagerPage />} />
+                </Route>
             </Routes>
         </Router>
     );

@@ -1,9 +1,10 @@
-
+import { useAuth } from "./AuthContext.jsx";
   
 export function UserPage () {
+    //const { currentUser } = useAuth();
     return (
         <div>
-            Hi
+            Hi User
         </div>
     );
   }

@@ -150,14 +150,15 @@ public class UserAccount {
             SQLConnection sqlConnection = new SQLConnection();
             connection = sqlConnection.getConnection();
             String query = "SELECT *,"
-                    + " ua.id AS ua_id, up.id AS up_id,"
-                    + " ua.email as email,"
-                    + " ua.password AS password,"
-                    + " up.permission AS permission, up.profileName AS profileName,"
-                    + " FROM UserAccounts ua"
-                    + " INNER JOIN UserProfiles up"
-                    + " ON ua.profileId = up.id"
-                    + " WHERE ua.email = ? AND up.id = ?";
+            + " ua.id AS ua_id, up.id AS up_id,"
+            + " ua.email as email,"
+            + " ua.password AS password,"
+            + " up.permission AS permission, up.profileName AS profileName"
+            + " FROM UserAccounts ua"
+            + " INNER JOIN UserProfiles up"
+            + " ON ua.profileId = up.id"
+            + " WHERE ua.email = ? AND up.id = ?";
+    
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, user.email);
             statement.setInt(2, user.profile.getId());
@@ -181,7 +182,7 @@ public class UserAccount {
                     .claim("id", accountId);
             builder.setIssuer("login")
                     .setSubject(email);
-            String secretKey = "csit314-software-development-methodologies";
+            String secretKey = "kyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy";
             builder.signWith(Keys.hmacShaKeyFor(secretKey.getBytes()));
             String jwt = builder.compact();
             return jwt;

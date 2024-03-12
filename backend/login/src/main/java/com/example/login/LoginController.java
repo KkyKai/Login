@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping(path = "/login") // This means URL's start with /useraccount (after Application path)
+@RequestMapping(path = "/login") 
 public class LoginController {
 
     @PostMapping

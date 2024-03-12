@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import com.example.login.SQLConnection;
 
 public class UserProfile {
@@ -29,7 +30,6 @@ public class UserProfile {
         this.profileName = profileName;
     }
 
-    // For new profiles, suspended will always default to false
     public UserProfile(String profileName, String permission) {
         this.profileName = profileName;
         this.permission = permission;
@@ -71,7 +71,6 @@ public class UserProfile {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, userProfile.profileName);
             statement.setString(2, userProfile.permission);
-            // statement.setInt(3, userProfile.id);
             statement.executeUpdate();
             return "Success";
         } catch (SQLException e) {
@@ -128,6 +127,35 @@ public class UserProfile {
         } catch (SQLException e) {
             System.out.println(e);
             return false;
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
+
+    public ArrayList<UserProfile> listAll() throws SQLException {
+        Connection connection = null;
+        try {
+            SQLConnection sqlConnection = new SQLConnection();
+            connection = sqlConnection.getConnection();
+            String query = "SELECT * FROM UserProfiles";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<UserProfile> results = new ArrayList<>();
+            while (resultSet.next()) {
+                // Get the data from the current row
+                Integer id = resultSet.getInt("id");
+                String profileName = resultSet.getString("profileName");
+                String permission = resultSet.getString("permission");
+                // Convert the data into an object that can be sent back to boundary
+                UserProfile result = new UserProfile(id, profileName, permission);
+                results.add(result);
+            }
+            return results;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
         } finally {
             if (connection != null) {
                 connection.close();

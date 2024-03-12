@@ -21,16 +21,13 @@ public class SQLConnection {
             String profileQuery = "CREATE TABLE IF NOT EXISTS UserProfiles ("
                             + "id INT AUTO_INCREMENT PRIMARY KEY,"
                             + "profileName VARCHAR(255),"
-                            + "permission VARCHAR(255),"
-                            + "suspended BOOLEAN"
+                            + "permission VARCHAR(255)"
                             + ")";
 
             String accountQuery = "CREATE TABLE IF NOT EXISTS UserAccounts ("
                             + "id INT AUTO_INCREMENT PRIMARY KEY,"
                             + "email VARCHAR(255),"
                             + "password VARCHAR(255),"
-                            + "name VARCHAR(255),"
-                            + "suspended BOOLEAN,"
                             + "profileId INT,"
                             + "CONSTRAINT FK_accountProfile FOREIGN KEY (profileId)"
                             + "REFERENCES UserProfiles(id)"
