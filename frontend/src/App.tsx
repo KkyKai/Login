@@ -1,14 +1,15 @@
 import './App.css';
 import PageRoutes from "./routes/PageRoutes";
-import React, { useEffect } from 'react';
+import React from 'react';
+import { AuthProvider } from "./pages/AuthContext"; // Import the AuthProvider
 
 function App() {
-
   return (
-
-      <div className="App">
-        <PageRoutes />    
-      </div>
+    <div className="App">
+      <AuthProvider>
+        <PageRoutes />
+      </AuthProvider>
+    </div>
   );
 }
 

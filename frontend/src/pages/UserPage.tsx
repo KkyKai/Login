@@ -1,10 +1,10 @@
-import { useAuth } from "./AuthContext.jsx";
+import LogoutButton from "./LogoutButton";
   
 export function UserPage () {
-    //const { currentUser } = useAuth();
     return (
         <div>
             Hi User
+            <LogoutButton />
         </div>
     );
   }

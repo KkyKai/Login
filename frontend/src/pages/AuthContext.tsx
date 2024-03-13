@@ -1,16 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface AuthContextType {
-  currentUser: any; // Update this to the appropriate type of currentUser
+  currentUser: any;
   loading: boolean;
-  setCurrentUser: React.Dispatch<React.SetStateAction<any>>; // Update this to the appropriate type of setCurrentUser
+  setCurrentUser: React.Dispatch<React.SetStateAction<any>>; 
 }
 
-const AuthContext = React.createContext<AuthContextType>({
+const initialState = {
   currentUser: null,
   loading: false,
   setCurrentUser: () => {}
-});
+};
+
+const AuthContext = createContext<AuthContextType>(initialState);
 
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -21,22 +23,15 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState<any>(null); // Update this to the appropriate type of currentUser
+  const [currentUser, setCurrentUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (currentUser) {
-      setLoading(false);
-      return;
-    }
-
     const storedUser = localStorage.getItem("user");
     if (storedUser !== null) {
       setCurrentUser(JSON.parse(storedUser));
-      setLoading(false);
-    } else {
-      setLoading(false); // If there's no user in localStorage, set loading to false
     }
+    setLoading(false);
   }, []);
 
   const value = {
@@ -45,5 +40,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setCurrentUser,
   };
 
+  console.log("value:", value);
+  console.log("children:", children);
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
+

@@ -9,22 +9,19 @@ interface ProtectedRouteProps {
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ allowedRoles }) => {
   const location = useLocation();
   const { currentUser } = useAuth();
-
+  console.log("Current user in ProtectedRouteProps:", currentUser);
   if (!currentUser) {
     return <Navigate to="/" state={{ from: location }} />;
   }
 
-  const { role, name } = currentUser;
+  const { role } = currentUser;
 
+  // Check if the current user's role is included in the allowed roles
   if (allowedRoles.includes(role)) {
     return <Outlet />;
+  } else {
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
-
-  if (name) {
-    return <Navigate to="/Unauthorized" state={{ from: location }} replace />;
-  }
-
-  return <Navigate to="/" state={{ from: location }} replace />;
 };
 
 export default ProtectedRoute;
