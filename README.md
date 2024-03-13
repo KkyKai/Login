@@ -35,7 +35,8 @@ password: password
 
 Select: user
 
-All routes to user or manager pages are protected by encryption via tokens and protected routes
+All routes to user or manager pages are protected by encryption via Authentication tokens and protected routes.
+Check out AuthContext.tsx, ProtectedRoutes.tsx, Login.tsx where I utilised the library jose, 
 To overwrite CORS policy,
 
 ![image](https://github.com/KkyKai/Login/assets/79208005/4f9778b3-62b8-49d3-af7c-7a81de076154)
@@ -60,6 +61,14 @@ When Email, password, or Role is inaccurate, the following error message will po
 ![image](https://github.com/KkyKai/Login/assets/79208005/a23c2939-3352-4a4e-8a7e-51850326a112)
 
 ![image](https://github.com/KkyKai/Login/assets/79208005/5b7edd43-4464-458d-9010-0a8b5646ea8f)
+
+
+Of note,
+
+![image](https://github.com/KkyKai/Login/assets/79208005/2e2feaff-90a9-4311-81e5-25d05c0d7404)
+
+showcases the use of axios to call Spring controller, and Authentication through encryption/decryption tokens.
+
 
 
 
