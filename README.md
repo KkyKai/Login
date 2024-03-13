@@ -35,9 +35,16 @@ password: password
 
 Select: user
 
-All routes to user or manager pages are protected by encryption via Authentication tokens and protected routes.
-Check out AuthContext.tsx, ProtectedRoutes.tsx, Login.tsx where I utilised the library jose, 
-To overwrite CORS policy,
+
+All routes to user or manager pages are protected by encryption via Authentication tokens and protected routes in both the front and backend of this application.
+
+Check out AuthContext.tsx, ProtectedRoutes.tsx, Login.tsx where I utilised the library jose. 
+
+as well as the login method in UserAccount.java
+
+![image](https://github.com/KkyKai/Login/assets/79208005/eb75fce2-dfa4-4ab1-a860-1a2ad1f7cfb7)
+
+For configuring CORS Policy to allow web server to interact with resources from a different origin,
 
 ![image](https://github.com/KkyKai/Login/assets/79208005/4f9778b3-62b8-49d3-af7c-7a81de076154)
 
