@@ -1,6 +1,6 @@
 # Login
 Completed Using ReactJS and TypeScript for View,
-Java Spring for Model and Controller for MVC model.
+Java Spring for Model and Controller for MVC pattern.
 
 To start, Run LoginApplication.java in the backend folder to start Spring Server.
 2 Accounts and profiles have been created via Spring Controllers through JSON injection through Postman (https://www.postman.com/downloads/)
