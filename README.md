@@ -16,7 +16,10 @@ useraccount
 ![image](https://github.com/KkyKai/Login/assets/79208005/11cef97f-0e05-4424-91e4-032d73e64e5b)
 
 To start Frontend, cd into frontend folder
-Type npm start to start React server
+
+Ensure all dependencies are installed via __npm install__
+
+Type __npm start__ to start React server
 
 Enter the following Account details when testing
 For manager:
