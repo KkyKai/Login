@@ -1,4 +1,4 @@
-import { TextInput, PasswordInput, Anchor, Paper, Title, Text, Container, Button } from '@mantine/core';
+import { TextInput, PasswordInput, Paper, Title, Container, Button } from '@mantine/core';
 import { notifications } from "@mantine/notifications";
 import classes from './AuthenticationTitle.module.css';
 import { useEffect, useState } from "react";
@@ -57,11 +57,7 @@ function Login() {
       })
       .catch((error) => {
         console.log(error);
-        notifications.show({
-          title: "Error",
-          message: error.response.data,
-          color: "red",
-        });
+        alert("Invalid userid or password.");
       });
   }
 
@@ -69,14 +65,9 @@ function Login() {
     <form className="loginForm" onSubmit={login}>
       <Container size={420} my={40}>
         <Title ta="center" className={classes.title}>
-          Welcome back!
+          Welcome back Ky!
         </Title>
-        <Text c="dimmed" size="sm" ta="center" mt={5}>
-          Do not have an account yet?{' '}
-          <Anchor size="sm" component="button">
-            Create account
-          </Anchor>
-        </Text>
+
 
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
           <TextInput

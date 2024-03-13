@@ -15,7 +15,7 @@ public class UserAccount {
     // Checks if table has been created
     private Integer id = -1;
     private String name;
-    private String username;
+    private String userName;
     private String email = "";
     private String password = "";
     // Foreign Key to UserProfile table
@@ -25,7 +25,7 @@ public class UserAccount {
         email = "";
         password = "";
         name  = "";;
-        username  = "";;
+        userName  = "";;
         profile = null;
     }
 
@@ -35,12 +35,12 @@ public class UserAccount {
     }
 
     // To map the results from the database
-    public UserAccount(Integer id, String email, String password, String name, String username, UserProfile profile) {
+    public UserAccount(Integer id, String email, String password, String name, String userName, UserProfile profile) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
-        this.username = username;
+        this.userName = userName;
         this.profile = profile;
     }
 
@@ -84,11 +84,11 @@ public class UserAccount {
     }
 
     public String getUserName() {
-        return username;
+        return userName;
     }
 
-    public void setUserName (String username) {
-        this.username = username;
+    public void setUserName (String userName) {
+        this.userName = userName;
     }
 
     public UserProfile getProfile() {
@@ -109,7 +109,7 @@ public class UserAccount {
             statement.setString(1, user.email);
             statement.setString(2, user.password);
             statement.setString(3, user.name);
-            statement.setString(4, user.username);
+            statement.setString(4, user.userName);
             statement.setInt(5, user.profile.getId());
             statement.executeUpdate();
             return "Success";
@@ -152,9 +152,9 @@ public class UserAccount {
             String permission = resultSet.getString("permission");
             String profileName = resultSet.getString("profileName");
             String name = resultSet.getString("name");
-            String username = resultSet.getString("username");
+            String userName = resultSet.getString("username");
             UserProfile userProfile = new UserProfile(profileId, profileName, permission);
-            UserAccount result = new UserAccount(id, email, password, name, username, userProfile);
+            UserAccount result = new UserAccount(id, email, password, name, userName, userProfile);
             return result;
         } catch (SQLException e) {
             System.out.println(e);
