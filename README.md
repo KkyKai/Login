@@ -1,3 +1,3 @@
 # Login
-Completed Using ReactJS for View,
+Completed Using ReactJS and TypeScript for View,
 Java Spring for Model and Controller
