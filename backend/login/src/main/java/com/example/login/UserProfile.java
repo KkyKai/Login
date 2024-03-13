@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import com.example.login.SQLConnection;
 
 public class UserProfile {
     // Checks if table has been created

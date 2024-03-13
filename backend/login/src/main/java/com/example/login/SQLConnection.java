@@ -26,7 +26,9 @@ public class SQLConnection {
 
             String accountQuery = "CREATE TABLE IF NOT EXISTS UserAccounts ("
                             + "id INT AUTO_INCREMENT PRIMARY KEY,"
+                            + "name VARCHAR(255),"
                             + "email VARCHAR(255),"
+                            + "username VARCHAR(255),"
                             + "password VARCHAR(255),"
                             + "profileId INT,"
                             + "CONSTRAINT FK_accountProfile FOREIGN KEY (profileId)"

@@ -4,19 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
-import com.example.login.SQLConnection;
-import com.example.login.UserProfile;
-
 @Service
 public class UserAccount {
     // Checks if table has been created
     private Integer id = -1;
+    private String name;
+    private String username;
     private String email = "";
     private String password = "";
     // Foreign Key to UserProfile table
@@ -25,6 +24,8 @@ public class UserAccount {
     public UserAccount() {
         email = "";
         password = "";
+        name  = "";;
+        username  = "";;
         profile = null;
     }
 
@@ -34,10 +35,12 @@ public class UserAccount {
     }
 
     // To map the results from the database
-    public UserAccount(Integer id, String email, String password, UserProfile profile) {
+    public UserAccount(Integer id, String email, String password, String name, String username, UserProfile profile) {
         this.id = id;
         this.email = email;
         this.password = password;
+        this.name = name;
+        this.username = username;
         this.profile = profile;
     }
 
@@ -72,6 +75,22 @@ public class UserAccount {
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUserName() {
+        return username;
+    }
+
+    public void setUserName (String username) {
+        this.username = username;
+    }
+
     public UserProfile getProfile() {
         return profile;
     }
@@ -85,11 +104,13 @@ public class UserAccount {
         try {
             SQLConnection sqlConnection = new SQLConnection();
             connection = sqlConnection.getConnection();
-            String query = "INSERT INTO UserAccounts (email, password, profileId) VALUES (?, ?, ?)";
+            String query = "INSERT INTO UserAccounts (email, password, name, username, profileId) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, user.email);
             statement.setString(2, user.password);
-            statement.setInt(3, user.profile.getId());
+            statement.setString(3, user.name);
+            statement.setString(4, user.username);
+            statement.setInt(5, user.profile.getId());
             statement.executeUpdate();
             return "Success";
         } catch (SQLException e) {
@@ -111,9 +132,9 @@ public class UserAccount {
             connection = sqlConnection.getConnection();
             String query = "SELECT *,"
                     + " ua.id AS ua_id, up.id AS up_id,"
-                    + " ua.email as email,"
-                    + " ua.password AS password,"
-                    + " up.permission AS permission, up.profileName AS profileName,"
+                    + " ua.name AS name, ua.email as email,"
+                    + " ua.username AS username, ua.password AS password,"
+                    + " up.permission AS permission, up.profileName AS profileName"
                     + " FROM UserAccounts ua"
                     + " INNER JOIN UserProfiles up"
                     + " ON ua.profileId = up.id"
@@ -130,8 +151,10 @@ public class UserAccount {
             Integer profileId = resultSet.getInt("profileId");
             String permission = resultSet.getString("permission");
             String profileName = resultSet.getString("profileName");
+            String name = resultSet.getString("name");
+            String username = resultSet.getString("username");
             UserProfile userProfile = new UserProfile(profileId, profileName, permission);
-            UserAccount result = new UserAccount(id, email, password, userProfile);
+            UserAccount result = new UserAccount(id, email, password, name, username, userProfile);
             return result;
         } catch (SQLException e) {
             System.out.println(e);
