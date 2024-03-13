@@ -56,6 +56,13 @@ On User Successful Login
 
 ![image](https://github.com/KkyKai/Login/assets/79208005/3970d797-5d66-43ae-8447-f6fbada13b9d)
 
+When Email, password or Role is inaccurate, the following error message will popup
+![image](https://github.com/KkyKai/Login/assets/79208005/a23c2939-3352-4a4e-8a7e-51850326a112)
+
+![image](https://github.com/KkyKai/Login/assets/79208005/5b7edd43-4464-458d-9010-0a8b5646ea8f)
+
+
+
 
 
 
